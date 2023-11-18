@@ -9,6 +9,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { LiveMatchDetailsComponent } from './live-match-details/live-match-details.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 @NgModule({
   declarations: [AppComponent, MainComponent, LiveMatchDetailsComponent],
   imports: [
@@ -18,6 +22,9 @@ import { LiveMatchDetailsComponent } from './live-match-details/live-match-detai
     MatToolbarModule,
     MatIconModule,
     MatListModule,
+    MatCardModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

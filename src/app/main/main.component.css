@@ -1,0 +1,36 @@
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
+.mat-list {
+  border: 1px solid #ccc; /* Add the desired border style */
+  padding: 10px; /* Add padding if needed */
+}
+
+.example-card {
+  margin: 10px;
+  overflow: hidden;
+  border-left: 5px solid orange;
+}
+
+.example-header-image {
+  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+  background-size: cover;
+}
+
+.team-name {
+  float: left;
+}
+
+.other-details {
+  float: right;
+}
+
+.spinner-wrapper {
+  text-align: center;
+}
+
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* 100% of the viewport height */
+}

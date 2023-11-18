@@ -1,11 +1,51 @@
 <div fxLayout="column" fxLayoutGap="20px" class="container">
-  <mat-list>
-    <mat-list-item
+  <div class="loading-container" *ngIf="isLoading; else content">
+    <div class="spinner-wrapper">
+      <mat-spinner diameter="30"></mat-spinner>
+    </div>
+  </div>
+  <ng-template #content>
+    <mat-card
+      class="example-card"
       *ngFor="let item of items"
       (click)="showDetails(item.eventId)"
     >
-      {{ item.eventId }}
-    </mat-list-item>
-  </mat-list>
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{ item.tournamentName }}</mat-card-title>
+        <mat-card-subtitle>{{ item.countryName }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-card-subtitle
+          >{{ item.eventText }} {{ item.eventInfo }}</mat-card-subtitle
+        >
+        <mat-card-subtitle>{{ item.eventStatusText }}</mat-card-subtitle>
+        <p style="display: flex; justify-content: space-between">
+          <span class="team-name"
+            ><i
+              class="fa-solid fa-baseball-bat-ball"
+              style="margin-right: 10px"
+            ></i
+            >{{ item.Team1Name }}</span
+          >
+          <span class="other-details">
+            {{ item.team1Score }} / {{ item.team1Wickets }} &nbsp;
+            {{ item.team1Score2 }}/{{ item.team1Wickets2 }}
+          </span>
+        </p>
+        <p style="display: flex; justify-content: space-between">
+          <span class="team-name"
+            ><i class="fa-solid fa-bowling-ball" style="margin-right: 10px"></i
+            >{{ item.Team2Name }}</span
+          >
+          <span class="other-details">
+            {{ item.team2Score }}/ {{ item.team2Wickets }} &nbsp;
+            {{ item.team2Score2 }}/{{ item.team2Wickets2 }}
+          </span>
+        </p>
+        <mat-card-subtitle>{{ item.eventComment }}</mat-card-subtitle>
+      </mat-card-content>
+    </mat-card>
+  </ng-template>
 </div>
 <router-outlet></router-outlet>
