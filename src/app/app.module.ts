@@ -12,6 +12,7 @@ import { LiveMatchDetailsComponent } from './live-match-details/live-match-detai
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [AppComponent, MainComponent, LiveMatchDetailsComponent],
@@ -25,6 +26,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatCardModule,
     MatButtonModule,
     MatProgressSpinnerModule,
+    MatSidenavModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

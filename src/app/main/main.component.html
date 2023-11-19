@@ -5,47 +5,84 @@
     </div>
   </div>
   <ng-template #content>
-    <mat-card
-      class="example-card"
-      *ngFor="let item of items"
-      (click)="showDetails(item.eventId)"
-    >
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>{{ item.tournamentName }}</mat-card-title>
-        <mat-card-subtitle>{{ item.countryName }}</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <mat-card-subtitle
-          >{{ item.eventText }} {{ item.eventInfo }}</mat-card-subtitle
+    <mat-list class="list">
+      <mat-list-item
+        *ngFor="let item of items"
+        class="mat-list"
+        (click)="showDetails(item.eventId)"
+      >
+        <div matListItemTitle>{{ item.tournamentName }}</div>
+        <div matListItemLine>{{ item.countryName }}</div>
+        <div matListItemLine>{{ item.eventText }} {{ item.eventInfo }}</div>
+        <p matListitemLine class="event-status-text">
+          {{ item.eventStatusText }}
+        </p>
+        <div matListitemLine>
+          <p style="display: flex; justify-content: space-between">
+            <span class="team-name"
+              ><i
+                *ngIf="item.battingTeam !== 1; else baseballIcon"
+                class="fa-solid fa-bowling-ball"
+                style="margin-right: 10px"
+              ></i>
+              <ng-template #baseballIcon>
+                <i
+                  class="fa-solid fa-baseball-bat-ball"
+                  style="margin-right: 10px"
+                ></i> </ng-template
+              >{{ item.Team1Name }}</span
+            >
+            <span class="other-details">
+              {{
+                item.team1Score && item.team1Wickets
+                  ? item.team1Score + "/" + item.team1Wickets + " "
+                  : ""
+              }}
+              {{
+                item.team1Score2 && item.team1Wickets2
+                  ? item.team1Score2 + "/" + item.team1Wickets2
+                  : ""
+              }}
+            </span>
+          </p>
+        </div>
+        <div matListitemLine>
+          <p style="display: flex; justify-content: space-between">
+            <span class="team-name"
+              ><i
+                *ngIf="item.battingTeam !== 2; else baseballIcon"
+                class="fa-solid fa-bowling-ball"
+                style="margin-right: 10px"
+              ></i>
+              <ng-template #baseballIcon>
+                <i
+                  class="fa-solid fa-baseball-bat-ball"
+                  style="margin-right: 10px"
+                ></i> </ng-template
+              >{{ item.Team2Name }}</span
+            >
+            <span class="other-details">
+              {{
+                item.team2Score && item.team2Wickets
+                  ? item.team2Score + "/" + item.team2Wickets + " "
+                  : ""
+              }}
+              {{
+                item.team2Score2 && item.team2Wickets2
+                  ? item.team2Score2 + "/" + item.team2Wickets2
+                  : ""
+              }}
+            </span>
+          </p>
+        </div>
+        <p
+          matListitemLine
+          style="display: flex; flex-wrap: wrap; max-width: 100%"
         >
-        <mat-card-subtitle>{{ item.eventStatusText }}</mat-card-subtitle>
-        <p style="display: flex; justify-content: space-between">
-          <span class="team-name"
-            ><i
-              class="fa-solid fa-baseball-bat-ball"
-              style="margin-right: 10px"
-            ></i
-            >{{ item.Team1Name }}</span
-          >
-          <span class="other-details">
-            {{ item.team1Score }} / {{ item.team1Wickets }} &nbsp;
-            {{ item.team1Score2 }}/{{ item.team1Wickets2 }}
-          </span>
+          {{ item.eventComment }}
         </p>
-        <p style="display: flex; justify-content: space-between">
-          <span class="team-name"
-            ><i class="fa-solid fa-bowling-ball" style="margin-right: 10px"></i
-            >{{ item.Team2Name }}</span
-          >
-          <span class="other-details">
-            {{ item.team2Score }}/ {{ item.team2Wickets }} &nbsp;
-            {{ item.team2Score2 }}/{{ item.team2Wickets2 }}
-          </span>
-        </p>
-        <mat-card-subtitle>{{ item.eventComment }}</mat-card-subtitle>
-      </mat-card-content>
-    </mat-card>
+      </mat-list-item>
+    </mat-list>
   </ng-template>
 </div>
 <router-outlet></router-outlet>

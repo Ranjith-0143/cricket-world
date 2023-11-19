@@ -18,4 +18,5 @@ export interface ListItem {
   team2Score2: number;
   team1Wickets2: number;
   team2Wickets2: number;
+  battingTeam: number;
 }

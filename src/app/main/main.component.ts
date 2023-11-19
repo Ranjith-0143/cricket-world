@@ -33,6 +33,7 @@ export class MainComponent implements OnInit {
 
   team1Wickets2!: number;
   team2Wickets2!: number;
+  battingTeam!: number;
 
   constructor(private router: Router) {}
   isLoading: boolean = true;
@@ -93,6 +94,8 @@ export class MainComponent implements OnInit {
           this.team1Wickets2 = event.Tr1CW2;
           this.team2Wickets2 = event.Tr2CW2;
 
+          this.battingTeam = event.Ebat;
+
           console.log('-----------------------------');
           console.log('Event ID:', this.eventId);
           console.log('t1 w', this.team1Wickets);
@@ -122,6 +125,7 @@ export class MainComponent implements OnInit {
             team2Score2: this.team2Score2,
             team1Wickets2: this.team1Wickets2,
             team2Wickets2: this.team2Wickets2,
+            battingTeam: this.battingTeam,
           });
         });
       });
