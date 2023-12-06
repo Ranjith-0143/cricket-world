@@ -9,7 +9,7 @@
       <mat-list-item
         *ngFor="let item of items"
         class="mat-list"
-        (click)="showDetails(item.eventId)"
+        (click)="showDetails(item.eventId , item.Scd , item.Ccd , item.Sdn)"
       >
         <div matListItemTitle>{{ item.tournamentName }}</div>
         <div matListItemLine>{{ item.countryName }}</div>
@@ -84,5 +84,6 @@
       </mat-list-item>
     </mat-list>
   </ng-template>
+ 
 </div>
 <router-outlet></router-outlet>

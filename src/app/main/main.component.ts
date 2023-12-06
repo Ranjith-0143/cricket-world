@@ -13,6 +13,9 @@ export class MainComponent implements OnInit {
   eventId!: number;
   tournamentName!: string;
   countryName!: string;
+  Scd!: string;
+  Ccd!: string;
+  Sdn!:string;
   eventText!: string;
   eventInfo!: string;
   eventStatusText!: string;
@@ -46,8 +49,8 @@ export class MainComponent implements OnInit {
 
   items: ListItem[] = [];
 
-  showDetails(itemId: number): void {
-    this.router.navigate(['/home/details', itemId]);
+  showDetails(itemId: number , Scd:string , Ccd :string, Sdn:string): void {
+    this.router.navigate(['/home/details', itemId,Scd , Ccd , Sdn]);
   }
 
   async fetchApi() {
@@ -56,7 +59,7 @@ export class MainComponent implements OnInit {
     const options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': 'a8ec3da861mshb32744df6dd9d15p19d307jsn088147dc42cd',
+        'X-RapidAPI-Key': '03c1be5a3fmsh58575c06ce4fa3ep1c5414jsn815874b68cfa',
         'X-RapidAPI-Host': 'livescore6.p.rapidapi.com',
       },
     };
@@ -70,6 +73,9 @@ export class MainComponent implements OnInit {
       result.Stages.forEach((stage: any) => {
         this.tournamentName = stage.Snm;
         this.countryName = stage.Cnm;
+        this.Scd = stage.Scd;
+        this.Ccd = stage.Ccd;
+        this.Sdn = stage.Sdn;
         stage.Events.forEach((event: any) => {
           this.eventId = event.Eid;
           this.eventText = event.EtTx; // main event text
@@ -126,6 +132,9 @@ export class MainComponent implements OnInit {
             team1Wickets2: this.team1Wickets2,
             team2Wickets2: this.team2Wickets2,
             battingTeam: this.battingTeam,
+            Scd:this.Scd,
+            Ccd:this.Ccd,
+            Sdn:this.Sdn
           });
         });
       });

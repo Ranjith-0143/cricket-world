@@ -1,0 +1,93 @@
+.spinner-wrapper {
+    text-align: center;
+  }
+  .mat-elevation-z8{
+    margin-top: 2px;
+    margin-bottom: 6px;
+  }
+  .loading-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; 
+  }
+.tabs-row {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+  }
+  .playerdetails-row {
+    display: flex;
+    justify-content: space-between;
+  }
+  .tabs-row div {
+    cursor: pointer;
+    margin-right: 5px;
+    margin-left: 5px;
+    border-radius: 5px;
+    padding: 5px;
+  }
+  
+  .tabs-row div.active {
+    color:white ;
+    background-color: #3f51b5;
+  }
+  .playerNameContainer{
+    display: flex;
+    justify-content: space-between;
+    margin: 0px;
+  }
+  .playersName{
+    color: #3f51b5;
+  }
+  .circle {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color:red; /* You can change the background color */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .w-icon {
+    color: white; /* You can change the icon color */
+    text-align: center;
+  }
+  /* .table-container {
+    max-height: 100vh; 
+    overflow-y: auto; 
+  } */
+  .wicket{
+    margin: 0px;
+
+  }
+  .battername{
+    margin: 0px;
+    font-weight: bold;
+  }
+
+  .run{
+    font-weight: bold;
+  }
+  .total{
+    margin: 0px;
+    margin-top: 4px;
+  }
+  .extras{
+    display: flex;
+    /* justify-content: space-between;   */
+  }
+  .extraTextInit{
+    margin: 0px;
+  }
+  .extraText{
+    /* margin-top: 0px; */
+    /* margin-left:; */
+    margin: 0px;
+    margin-left: 8px;
+  }
+  
+  
+  

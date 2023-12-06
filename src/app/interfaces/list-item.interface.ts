@@ -2,6 +2,9 @@ export interface ListItem {
   eventId: number;
   tournamentName: string;
   countryName: string;
+  Scd:string;
+  Ccd:string;
+  Sdn:string;
   eventText: string;
   eventInfo: string;
   eventStatusText: string;
@@ -13,7 +16,7 @@ export interface ListItem {
   team1Score: number;
   team2Score: number;
   team1Wickets: number;
-  team2Wickets: number;
+  team2Wickets: number; 
   team1Score2: number;
   team2Score2: number;
   team1Wickets2: number;

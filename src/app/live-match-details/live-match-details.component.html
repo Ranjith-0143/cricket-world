@@ -1,1 +1,20 @@
 <p>live-match-details works! {{ itemId }}</p>
+
+<div>
+
+  <div class="tabs-row">
+    <div (click)="selectTab('Info')" [class.active]="selectedTab === 'Info'">Info</div>
+    <div (click)="selectTab('Scorecard')" [class.active]="selectedTab === 'Scorecard'">Scorecard</div>
+    <div (click)="selectTab('Summary')" [class.active]="selectedTab === 'Summary'">Summary</div>
+    <div (click)="selectTab('Teams')" [class.active]="selectedTab === 'Teams'">Teams</div>
+    <div (click)="selectTab('Table')" [class.active]="selectedTab === 'Table'">Table</div>
+  </div>
+
+  <div>
+    <div *ngIf="selectedTab === 'Info'">Info content goes here</div>
+    <div *ngIf="selectedTab === 'Scorecard'"><app-score-card></app-score-card></div>
+    <div *ngIf="selectedTab === 'Summary'"><app-match-summary></app-match-summary></div>
+    <div *ngIf="selectedTab === 'Teams'"><app-player-details></app-player-details></div>
+    <div *ngIf="selectedTab === 'Table'"><app-table></app-table></div>
+  </div>
+</div>

@@ -13,9 +13,24 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { PlayerDetailsComponent } from './details-components/player-details/player-details.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatchSummaryComponent } from './details-components/match-summary/match-summary.component';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { ScoreCardComponent } from './details-components/score-card/score-card.component';
+import { TableComponent } from './table/table.component';
 
 @NgModule({
-  declarations: [AppComponent, MainComponent, LiveMatchDetailsComponent],
+  declarations: [
+    AppComponent,
+    MainComponent,
+    LiveMatchDetailsComponent,
+    PlayerDetailsComponent,
+    MatchSummaryComponent,
+    ScoreCardComponent,
+    TableComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -27,8 +42,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatButtonModule,
     MatProgressSpinnerModule,
     MatSidenavModule,
+    MatTableModule,
+    MatGridListModule
   ],
-  providers: [],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

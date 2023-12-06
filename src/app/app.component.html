@@ -1,12 +1,32 @@
 <!-- <app-main></app-main> -->
 <mat-toolbar color="primary">
-  <button
-    mat-icon-button
-    class="example-icon"
-    aria-label="Example icon-button with menu icon"
-  >
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
+    (click)="drawer.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
   <span style="margin-left: 5px">Cric World</span>
 </mat-toolbar>
-<router-outlet></router-outlet>
+<mat-drawer-container autosize>
+  <mat-drawer #drawer opened="false" mode="side">
+    <mat-nav-list>
+      <mat-list-item>
+        <button mat-button><mat-icon>home</mat-icon>Home</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button><mat-icon>settings</mat-icon>Settings</button>
+      </mat-list-item>
+      <mat-list-item>
+
+        <button mat-button><mat-icon>help</mat-icon>Help</button>
+      </mat-list-item>
+      <mat-list-item>
+
+        <button mat-button><mat-icon>analytics</mat-icon>Analytics</button>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content style="min-height: 100vh;">
+
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

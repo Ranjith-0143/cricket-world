@@ -11,11 +11,11 @@ const routes: Routes = [
     component: MainComponent,
     // children: [{ path: 'details/:id', component: LiveMatchDetailsComponent }],
   },
-  { path: 'home/details/:id', component: LiveMatchDetailsComponent },
+  { path: 'home/details/:id/:Scd/:Ccd/:Sdn', component: LiveMatchDetailsComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash:true})],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
