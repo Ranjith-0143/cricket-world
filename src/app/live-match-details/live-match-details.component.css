@@ -16,3 +16,87 @@
     font-weight: bold;
   }
   
+  .spinner-wrapper {
+    text-align: center;
+  }
+  .table {
+    margin-top: 25px;
+    border: #3f51b5;
+    border-radius: 10px;
+    border-color: #3f51b5;
+    border-width: 5px;
+  }
+  .table th {
+    background-color: #f2f2f2; /* Set a background color for header cells if desired */
+  }
+  .loading-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+  }
+  .subHeader{
+    margin: 0px;
+    font-size: 12px;
+  }
+
+  th {
+  cursor: pointer;
+}
+
+.matchDetails{
+  display: flex;
+  justify-content: space-between;
+  margin: 0px;
+  
+}
+  .details{
+    border-radius: 4px;
+    /* border-width: 13px; */
+    border-left-width: 13px;
+    border-left-color: #3f51b5;
+  }
+  .matchName{
+    margin: 0px;
+    font-size: 12px;
+  }
+
+  .subText{
+    margin: 0px;
+    color: #3f51b5;
+    font-size: 12px;
+  }
+  .team1 {
+    margin: 0px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .team2 {
+    margin: 0px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .teamName1{
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin: 0px;
+  }
+  .teamName2{
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin: 0px;
+  }
+  .team1Score{
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin: 0px;
+  }
+  .team2Score{
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin: 0px;
+  }
+  .comment{
+    font-size: 12px;
+    margin: 0px;
+  }

@@ -26,6 +26,19 @@ export class PlayerDetailsComponent {
     }
   }
 
+  combinePlayerData(): any[] {
+    const team1Players = this.teamsData[0]?.Lu[0]?.Ps || [];
+    const team2Players = this.teamsData[0]?.Lu[1]?.Ps || [];
+
+    // Combine player data from both teams
+    const maxLength = Math.max(team1Players.length, team2Players.length);
+
+    return Array.from({ length: maxLength }, (_, index) => ({
+      team1: team1Players[index] || { Snm: '', Pos: 0 },
+      team2: team2Players[index] || { Snm: '', Pos: 0 },
+    }));
+  }
+
   async fetchPlayerDetails() {
     const url = `https://livescore6.p.rapidapi.com/matches/v2/get-lineups?Eid=${this.itemId}&Category=cricket`;
     const options = {

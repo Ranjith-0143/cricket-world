@@ -19,7 +19,13 @@ import { MatchSummaryComponent } from './details-components/match-summary/match-
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { ScoreCardComponent } from './details-components/score-card/score-card.component';
-import { TableComponent } from './table/table.component';
+import { TableComponent } from './details-components/table/table.component';
+import { InfoComponent } from './details-components/info/info.component';
+import { MonthNamePipe } from './month-name.pipe';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,6 +36,8 @@ import { TableComponent } from './table/table.component';
     MatchSummaryComponent,
     ScoreCardComponent,
     TableComponent,
+    InfoComponent,
+    MonthNamePipe
   ],
   imports: [
     BrowserModule,
@@ -43,7 +51,12 @@ import { TableComponent } from './table/table.component';
     MatProgressSpinnerModule,
     MatSidenavModule,
     MatTableModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent],

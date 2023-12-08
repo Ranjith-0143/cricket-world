@@ -1,44 +1,29 @@
 @import "~@fortawesome/fontawesome-free/css/all.css";
 
-.mat-list {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  border-left: 5px solid #3f51b5;
-  margin-bottom: 10px;
-  box-shadow: black;
-  padding: 8px;
+.options{
+  margin:0px ;
+  display: flex;
+  justify-content: space-between;
+
 }
-.list {
-  margin: 10px;
-  pointer-events: auto;
-  box-shadow: black;
+.tabs-row {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
 }
 
-.event-status-text {
-  color: #3f51b5;
+.tabs-row div {
+  cursor: pointer;
+}
+
+.tabs-row div.active {
+  color:#3f51b5 ;
+  font-weight: bold;
+}
+.subHeader{
+  margin: 0px;
   font-size: 12px;
-}
-
-/* .example-card {
-  margin: 10px;
-  overflow: hidden;
-  border-left: 5px solid orange;
-}
-
-.example-header-image {
-  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
-  background-size: cover;
-} */
-
-.team-name {
-  float: left;
-  color: #3f51b5;
-  font-weight: bold;
-}
-
-.other-details {
-  float: right;
-  font-weight: bold;
 }
 
 .spinner-wrapper {
@@ -51,3 +36,73 @@
   justify-content: center;
   height: 100vh; /* 100% of the viewport height */
 }
+
+.table {
+  margin-top: 25px;
+}
+th {
+  cursor: pointer;
+}
+.table th {
+  background-color: #f2f2f2; /* Set a background color for header cells if desired */
+}
+td {
+  cursor: pointer;
+}
+.matchDetails{
+  display: flex;
+  justify-content: space-between;
+  margin: 0px;
+  margin-top: 4px;
+}
+  .details{
+    border-radius: 4px;
+    /* border-width: 13px; */
+    border-left-width: 13px;
+    border-left-color: #3f51b5;
+  }
+  .matchName{
+    margin: 0px;
+    font-size: 12px;
+  }
+
+  .subText{
+    margin: 0px;
+    color: #3f51b5;
+    font-size: 12px;
+  }
+  .team1 {
+    margin: 0px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .team2 {
+    margin: 0px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .teamName1{
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin: 0px;
+  }
+  .teamName2{
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin: 0px;
+  }
+  .team1Score{
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin: 0px;
+  }
+  .team2Score{
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin: 0px;
+  }
+  .comment{
+    font-size: 12px;
+    margin: 0px;
+    margin-bottom: 4px;
+  }

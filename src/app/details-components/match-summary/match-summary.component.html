@@ -19,7 +19,7 @@
                 <div *ngFor="let summary of summaryDatas[0]?.SDInn">
                     <div *ngIf="selectedWicketsTab === summary.Ti" class="table-container">
                         <!-- {{ summary.Ti }} content goes here -->
-                        <table mat-table [dataSource]="summary.Com" class="mat-elevation-z8">
+                        <table mat-table [dataSource]="summary.Com" class="table">
                             <!-- B Column -->
                             <ng-container matColumnDef="bColumn">
                                 <td mat-cell *matCellDef="let wicket" ><p *ngIf="wicket.Aid !== 0 && wicket.Oid !== 0">{{ wicket.Ov }}</p></td>
@@ -58,7 +58,7 @@
                 <div *ngFor="let summary of summaryDatas[0]?.SDInn">
                     <div *ngIf="selectedWicketsTab === summary.Ti">
                         <!-- {{ summary.Ti }} content goes here -->
-                        <table mat-table [dataSource]="summary.FoW" class="mat-elevation-z8">
+                        <table mat-table [dataSource]="summary.FoW" class="table">
 
                             <!-- B Column -->
                             <ng-container matColumnDef="bColumn">

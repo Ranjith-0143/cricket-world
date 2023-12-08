@@ -5,85 +5,50 @@
     </div>
   </div>
   <ng-template #content>
-    <mat-list class="list">
-      <mat-list-item
-        *ngFor="let item of items"
-        class="mat-list"
-        (click)="showDetails(item.eventId , item.Scd , item.Ccd , item.Sdn)"
-      >
-        <div matListItemTitle>{{ item.tournamentName }}</div>
-        <div matListItemLine>{{ item.countryName }}</div>
-        <div matListItemLine>{{ item.eventText }} {{ item.eventInfo }}</div>
-        <p matListitemLine class="event-status-text">
-          {{ item.eventStatusText }}
-        </p>
-        <div matListitemLine>
-          <p style="display: flex; justify-content: space-between">
-            <span class="team-name"
-              ><i
-                *ngIf="item.battingTeam !== 1; else baseballIcon"
-                class="fa-solid fa-bowling-ball"
-                style="margin-right: 10px"
-              ></i>
-              <ng-template #baseballIcon>
-                <i
-                  class="fa-solid fa-baseball-bat-ball"
-                  style="margin-right: 10px"
-                ></i> </ng-template
-              >{{ item.Team1Name }}</span
-            >
-            <span class="other-details">
-              {{
-                item.team1Score && item.team1Wickets
-                  ? item.team1Score + "/" + item.team1Wickets + " "
-                  : ""
-              }}
-              {{
-                item.team1Score2 && item.team1Wickets2
-                  ? item.team1Score2 + "/" + item.team1Wickets2
-                  : ""
-              }}
-            </span>
-          </p>
-        </div>
-        <div matListitemLine>
-          <p style="display: flex; justify-content: space-between">
-            <span class="team-name"
-              ><i
-                *ngIf="item.battingTeam !== 2; else baseballIcon"
-                class="fa-solid fa-bowling-ball"
-                style="margin-right: 10px"
-              ></i>
-              <ng-template #baseballIcon>
-                <i
-                  class="fa-solid fa-baseball-bat-ball"
-                  style="margin-right: 10px"
-                ></i> </ng-template
-              >{{ item.Team2Name }}</span
-            >
-            <span class="other-details">
-              {{
-                item.team2Score && item.team2Wickets
-                  ? item.team2Score + "/" + item.team2Wickets + " "
-                  : ""
-              }}
-              {{
-                item.team2Score2 && item.team2Wickets2
-                  ? item.team2Score2 + "/" + item.team2Wickets2
-                  : ""
-              }}
-            </span>
-          </p>
-        </div>
-        <p
-          matListitemLine
-          style="display: flex; flex-wrap: wrap; max-width: 100%"
-        >
-          {{ item.eventComment }}
-        </p>
-      </mat-list-item>
-    </mat-list>
+    <div *ngFor="let stage of teamsData[0]?.Stages; let i = index">
+      <table mat-table [dataSource]="stage.Events" class="table">
+        <!-- Replace 'bColumn' with the actual property name from your data -->
+        <ng-container matColumnDef="Eid">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ stage.Snm }}
+            <p class="subHeader">{{stage.Cnm}}</p>
+          </th>
+          <td mat-cell *matCellDef="let event" (click)="showDetails(event.Eid , stage.Scd , stage.Ccd , stage.Scd)">
+            <div class="matchDetails">
+
+              <p class="matchName">
+                {{event.EtTx}} {{event.ErnInf ? '(' + event.ErnInf  + ')' : ''}}
+              </p>
+              <p class="matchName">
+                <span *ngIf="event.Esd">
+                  {{ getFormattedDate(event.Esd, 4, 6) | monthName }}
+                  {{ getFormattedDate(event.Esd, 6, 8) }}
+                </span>
+                <ng-container *ngIf="event.Ese"> - </ng-container>
+                <span *ngIf="event.Ese">
+                  {{ getFormattedDate(event.Ese, 4, 6) | monthName }}
+                  {{ getFormattedDate(event.Ese, 6, 8) }}
+                </span>
+              </p>
+            </div>
+            <p class="subText">{{event.EpsL}}</p>
+            <div class="team1">
+              <p class="teamName1">{{event.T1[0].Nm}}</p>
+              <p class="team1Score">{{event.Tr1C1 ? event.Tr1C1 : ''}} {{ event.Tr1CW1 ? '/' + event.Tr1CW1 : ''}} {{event.Tr1C2 ? '& ' + event.Tr1C2 : ''}} {{ event.Tr1CW2 ? '/' + event.Tr1CW2 : ''}}</p>
+            </div>
+            <div class="team2">
+              <p class="teamName2">{{event.T2[0].Nm}}</p>
+              <p class="team2Score">{{event.Tr2C1 ? event.Tr2C1 : ''}} {{ event.Tr2CW1 ? '/' + event.Tr2CW1 : ''}} {{event.Tr2C2 ? '& ' + event.Tr2C2 : ''}} {{ event.Tr2CW2 ? '/' + event.Tr2CW2: ''}}</p>
+            </div>
+            <p class="comment">{{event.ECo}}</p>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="['Eid']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['Eid']"></tr>
+      </table>
+    </div>
   </ng-template>
- 
+  
 </div>
 <router-outlet></router-outlet>

@@ -7,31 +7,27 @@
     </div>
 
     <ng-template #content>
-        <table mat-table [dataSource]="teamsData" class="mat-elevation-z8">
+        <table mat-table [dataSource]="combinePlayerData()" class="table">
             <ng-container matColumnDef="team1playernames">
-                <td mat-cell *matCellDef="let team">
-                    <ng-container *ngIf="team.Lu && team.Lu[0]?.Ps">
-                        <div *ngFor="let player of team.Lu[0].Ps" class="player-item">{{ player.Snm }} 
-                            <span *ngIf="player.Pos === 124">(W)</span>
-                            <span *ngIf="player.Pos === 123">(C)</span>
-                            <span *ngIf="player.Pos === 125">(C) (W)</span>
-                        </div>
-                    </ng-container>
+                <th mat-header-cell *matHeaderCellDef>Team 1</th>
+                <td mat-cell *matCellDef="let data">
+                    {{ data.team1.Fn }} {{data.team1.Ln}}
+                    <span *ngIf="data.team1.Pos === 124">(W)</span>
+                    <span *ngIf="data.team1.Pos === 123">(C)</span>
+                    <span *ngIf="data.team1.Pos === 125">(C) (W)</span>
                 </td>
             </ng-container>
-
+    
             <ng-container matColumnDef="team2playernames">
-                <td mat-cell *matCellDef="let team">
-                    <ng-container *ngIf="team.Lu && team.Lu[1]?.Ps">
-                        <div *ngFor="let player of team.Lu[1].Ps" class="player-item">
-                            {{ player.Snm }}
-                            <span *ngIf="player.Pos === 124">(W)</span>
-                            <span *ngIf="player.Pos === 123">(C)</span>
-                            <span *ngIf="player.Pos === 125">(C) (W)</span>
-                        </div>
-                    </ng-container>
+                <th mat-header-cell *matHeaderCellDef>Team 2</th>
+                <td mat-cell *matCellDef="let data">
+                    {{ data.team2.Fn }} {{data.team2.Ln}}
+                    <span *ngIf="data.team2.Pos === 124">(W)</span>
+                    <span *ngIf="data.team2.Pos === 123">(C)</span>
+                    <span *ngIf="data.team2.Pos === 125">(C) (W)</span>
                 </td>
             </ng-container>
+            <tr mat-header-row *matHeaderRowDef="['team1playernames', 'team2playernames']"></tr>
             <tr mat-row *matRowDef="let row; columns: ['team1playernames', 'team2playernames'];"></tr>
         </table>
     </ng-template>

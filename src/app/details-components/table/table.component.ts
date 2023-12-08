@@ -10,6 +10,7 @@ export class TableComponent {
   itemId: number;
   Scd: string;
   Ccd: string;
+  Sdn:string;
   teamsData: any = [];
   isLoading: boolean = true;
 
@@ -20,6 +21,8 @@ export class TableComponent {
     console.log(this.Scd);
     this.Ccd = this.route.snapshot.paramMap.get('Ccd') || '';
     console.log(this.Ccd)
+    this.Sdn = this.route.snapshot.paramMap.get('Sdn') || '';
+    console.log(this.Sdn)
   }
 
   async ngOnInit(): Promise<void> {

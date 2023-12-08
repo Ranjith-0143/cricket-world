@@ -1,20 +1,78 @@
-<p>live-match-details works! {{ itemId }}</p>
+<div fxLayout="column" fxLayoutGap="20px" class="container">
+  <div>
+    <div class="loading-container" *ngIf="isLoading; else content">
+      <div class="spinner-wrapper">
+        <mat-spinner diameter="30"></mat-spinner>
+      </div>
+    </div>
+    <ng-template #content>
+      <table mat-table [dataSource]="teamsData" class="table">
+        <ng-container matColumnDef="bColumn">
+          <th mat-header-cell *matHeaderCellDef (click)="leagueDetails()">
+            {{ teamsData[0]?.Stg?.Sdn }}
+            <p class="subHeader">{{teamsData[0]?.Stg?.Cnm}}</p>
+          </th>
+          <td mat-cell *matCellDef="let score" class="details">
+            <div class="matchDetails">
 
-<div>
-
-  <div class="tabs-row">
-    <div (click)="selectTab('Info')" [class.active]="selectedTab === 'Info'">Info</div>
-    <div (click)="selectTab('Scorecard')" [class.active]="selectedTab === 'Scorecard'">Scorecard</div>
-    <div (click)="selectTab('Summary')" [class.active]="selectedTab === 'Summary'">Summary</div>
-    <div (click)="selectTab('Teams')" [class.active]="selectedTab === 'Teams'">Teams</div>
-    <div (click)="selectTab('Table')" [class.active]="selectedTab === 'Table'">Table</div>
+              <p class="matchName">
+                {{score.EtTx}} {{score.ErnInf ? '(' + score.ErnInf  + ')' : ''}}
+              </p>
+              <!-- <p class="matchName">
+                {{score.Esd.toString().slice(4,6) | monthName }} {{score.Esd.toString().slice(6,8)}} -
+                {{ score.Ese.toString().slice(4,6) | monthName }} {{ score.Ese.toString().slice(6,8) }}
+              </p> -->
+              <p class="matchName">
+                <span *ngIf="score.Esd">
+                  {{ getFormattedDate(score.Esd, 4, 6) | monthName }}
+                  {{ getFormattedDate(score.Esd, 6, 8) }}
+                </span>
+                <ng-container *ngIf="score.Ese"> - </ng-container>
+                <span *ngIf="score.Ese">
+                  {{ getFormattedDate(score.Ese, 4, 6) | monthName }}
+                  {{ getFormattedDate(score.Ese, 6, 8) }}
+                </span>
+              </p>
+              
+              
+            </div>
+            <p class="subText">{{score.EpsL}}</p>
+            <div class="team1">
+              <p class="teamName1">{{score.T1[0].Nm}}</p>
+              <p class="team1Score">{{score.Tr1C1 ? score.Tr1C1 : ''}} {{ score.Tr1CW1 ? '/' + score.Tr1CW1 : ''}} {{score.Tr1C2 ? '& ' + score.Tr1C2 : ''}} {{ score.Tr1CW2 ? '/' + score.Tr1CW2 : ''}}</p>
+            </div>
+            <div class="team2">
+              <p class="teamName2">{{score.T2[0].Nm}}</p>
+              <p class="team2Score">{{score.Tr2C1 ? score.Tr2C1 : ''}} {{ score.Tr2CW1 ? '/' + score.Tr2CW1 : ''}} {{score.Tr2C2 ? '& ' + score.Tr2C2 : ''}} {{ score.Tr2CW2 ? '/' + score.Tr2CW2: ''}}</p>
+            </div>
+            <p class="comment">{{score.ECo}}</p>
+          </td>
+          <tr mat-header-row *matHeaderRowDef="['bColumn']"></tr>
+          <tr mat-row *matRowDef="let row; columns: ['bColumn']"></tr>
+        </ng-container>
+      </table>
+    </ng-template>
   </div>
 
+
   <div>
-    <div *ngIf="selectedTab === 'Info'">Info content goes here</div>
-    <div *ngIf="selectedTab === 'Scorecard'"><app-score-card></app-score-card></div>
-    <div *ngIf="selectedTab === 'Summary'"><app-match-summary></app-match-summary></div>
-    <div *ngIf="selectedTab === 'Teams'"><app-player-details></app-player-details></div>
-    <div *ngIf="selectedTab === 'Table'"><app-table></app-table></div>
+    <div class="tabs-row">
+      <div (click)="selectTab('Info')" [class.active]="selectedTab === 'Info'">Match Info</div>
+      <div (click)="selectTab('Scorecard')" [class.active]="selectedTab === 'Scorecard'">Scorecard</div>
+      <div (click)="selectTab('Summary')" [class.active]="selectedTab === 'Summary'">Summary</div>
+      <div (click)="selectTab('Teams')" [class.active]="selectedTab === 'Teams'">Players</div>
+      <div (click)="selectTab('Table')" *ngIf ="teamsData[0]?.EO === 6816359 || teamsData[0]?.EOX === 6816359"  [class.active]="selectedTab === 'Table'">Table</div>
+    </div>
+
+    <div>
+      <div *ngIf="selectedTab === 'Info'"><app-info></app-info></div>
+      <div *ngIf="selectedTab === 'Scorecard'"><app-score-card></app-score-card></div>
+      <div *ngIf="selectedTab === 'Summary'"><app-match-summary></app-match-summary></div>
+      <div *ngIf="selectedTab === 'Teams'">
+        <app-player-details></app-player-details>
+        <!-- <router-outlet></router-outlet> -->
+      </div>
+      <div *ngIf="selectedTab === 'Table'"><app-table></app-table></div>
+    </div>
   </div>
 </div>

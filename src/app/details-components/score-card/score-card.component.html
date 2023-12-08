@@ -13,8 +13,32 @@
             </div>
             <div *ngFor="let summary of summaryDatas[0]?.SDInn">
                 <div *ngIf="selectedWicketsTab === summary.Ti" class="table-container">
+
+                    <!-- Stats -->
+                    <table mat-table [dataSource]="[summary]" class="table">
+                        <ng-container matColumnDef="bColumn">
+                            <th mat-header-cell *matHeaderCellDef>Stats</th>
+                            <td mat-cell *matCellDef="let stats">
+                               <p class="total"> Total: {{ stats.Pt }}/{{ stats.Wk}} ( {{stats.Ov}})</p>
+                               <p class="wicket"> Run Rate: {{stats.Rr }}</p>
+                               <div class="extras">
+
+                                   <p class="extraTextInit"> Extras: {{stats.Ex }}</p>
+                                   <p class="extraText"> B:  {{stats.B }} </p>
+                                   <p class="extraText"> LB: {{stats.LB }} </p>
+                                   <p class="extraText"> NB: {{stats.NB }} </p>
+                                   <p class="extraText"> WD: {{stats.WB }}</p> 
+                                   <p class="extraText">  P: {{stats.Pen }}</p>
+                               </div>
+                            </td>
+                        </ng-container>
+                        <!-- Columns displayed in the table -->
+                        <tr mat-header-row *matHeaderRowDef="['bColumn']"></tr>
+                        <tr mat-row *matRowDef="let row; columns: ['bColumn']"></tr>
+                    </table>
+
                     <!-- {{ summary.Ti }} content goes here -->
-                    <table mat-table [dataSource]="summary.Bat" class="mat-elevation-z8">
+                    <table mat-table [dataSource]="summary.Bat" class="table">
                         
                         <ng-container matColumnDef="bColumn">
                             <th mat-header-cell *matHeaderCellDef>Batters</th>
@@ -62,33 +86,11 @@
 
 
 
-                    <!-- Stats -->
-                    <table mat-table [dataSource]="[summary]" class="mat-elevation-z8">
-                        <ng-container matColumnDef="bColumn">
-                            <th mat-header-cell *matHeaderCellDef>Stats</th>
-                            <td mat-cell *matCellDef="let stats">
-                               <p class="total"> Total: {{ stats.Pt }}/{{ stats.Wk}} ( {{stats.Ov}})</p>
-                               <p class="wicket"> Run Rate: {{stats.Rr }}</p>
-                               <div class="extras">
-
-                                   <p class="extraTextInit"> Extras: {{stats.Ex }}</p>
-                                   <p class="extraText"> B:  {{stats.B }} </p>
-                                   <p class="extraText"> LB: {{stats.LB }} </p>
-                                   <p class="extraText"> NB: {{stats.NB }} </p>
-                                   <p class="extraText"> WD: {{stats.WB }}</p> 
-                                   <p class="extraText">  P: {{stats.Pen }}</p>
-                               </div>
-                            </td>
-                        </ng-container>
-                        <!-- Columns displayed in the table -->
-                        <tr mat-header-row *matHeaderRowDef="['bColumn']"></tr>
-                        <tr mat-row *matRowDef="let row; columns: ['bColumn']"></tr>
-                    </table>
-
+                    
 
                     
                     <!-- Bowling -->
-                    <table mat-table [dataSource]="summary.Bow" class="mat-elevation-z8">
+                    <table mat-table [dataSource]="summary.Bow" class="table">
                         
                         <ng-container matColumnDef="bColumn">
                             <th mat-header-cell *matHeaderCellDef>Bowling</th>

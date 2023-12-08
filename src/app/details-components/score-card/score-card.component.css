@@ -20,6 +20,13 @@
     display: flex;
     justify-content: space-between;
   }
+  .table {
+    margin-top: 25px;
+    border: #3f51b5;
+    border-radius: 10px;
+    border-color: #3f51b5;
+    border-width: 5px;
+  }
   .tabs-row div {
     cursor: pointer;
     margin-right: 5px;
