@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-match-summary',
@@ -32,8 +33,8 @@ export class MatchSummaryComponent {
     const options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': '03c1be5a3fmsh58575c06ce4fa3ep1c5414jsn815874b68cfa',
-        'X-RapidAPI-Host': 'livescore6.p.rapidapi.com',
+        'X-RapidAPI-Key': environment.XRapidAPIKey,
+        'X-RapidAPI-Host': environment.XRapidAPIHost,
       },
     };
 

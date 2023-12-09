@@ -1,0 +1,16 @@
+.spinner-wrapper {
+    text-align: center;
+}
+  
+.loading-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px; 
+}
+ 
+.infoDetails{
+    display: flex;
+    justify-content: space-between;
+    margin: 0px;
+}

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-table',
@@ -36,10 +37,8 @@ export class TableComponent {
     const options = {
       method: 'GET',
       headers: {
-        // 'X-RapidAPI-Key': 'a8ec3da861mshb32744df6dd9d15p19d307jsn088147dc42cd',
-        'X-RapidAPI-Key': '03c1be5a3fmsh58575c06ce4fa3ep1c5414jsn815874b68cfa',
-
-        'X-RapidAPI-Host': 'livescore6.p.rapidapi.com',
+        'X-RapidAPI-Key': environment.XRapidAPIKey,
+        'X-RapidAPI-Host': environment.XRapidAPIHost,
       },
     };
 

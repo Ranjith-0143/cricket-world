@@ -18,10 +18,6 @@
               <p class="matchName">
                 {{score.EtTx}} {{score.ErnInf ? '(' + score.ErnInf  + ')' : ''}}
               </p>
-              <!-- <p class="matchName">
-                {{score.Esd.toString().slice(4,6) | monthName }} {{score.Esd.toString().slice(6,8)}} -
-                {{ score.Ese.toString().slice(4,6) | monthName }} {{ score.Ese.toString().slice(6,8) }}
-              </p> -->
               <p class="matchName">
                 <span *ngIf="score.Esd">
                   {{ getFormattedDate(score.Esd, 4, 6) | monthName }}
@@ -58,7 +54,7 @@
   <div>
     <div class="tabs-row">
       <div (click)="selectTab('Info')" [class.active]="selectedTab === 'Info'">Match Info</div>
-      <div (click)="selectTab('Scorecard')" [class.active]="selectedTab === 'Scorecard'">Scorecard</div>
+      <div (click)="selectTab('Scorecard')" [class.active]="selectedTab === 'Scorecard'">Scoreboard</div>
       <div (click)="selectTab('Summary')" [class.active]="selectedTab === 'Summary'">Summary</div>
       <div (click)="selectTab('Teams')" [class.active]="selectedTab === 'Teams'">Players</div>
       <div (click)="selectTab('Table')" *ngIf ="teamsData[0]?.EO === 6816359 || teamsData[0]?.EOX === 6816359"  [class.active]="selectedTab === 'Table'">Table</div>
@@ -68,10 +64,7 @@
       <div *ngIf="selectedTab === 'Info'"><app-info></app-info></div>
       <div *ngIf="selectedTab === 'Scorecard'"><app-score-card></app-score-card></div>
       <div *ngIf="selectedTab === 'Summary'"><app-match-summary></app-match-summary></div>
-      <div *ngIf="selectedTab === 'Teams'">
-        <app-player-details></app-player-details>
-        <!-- <router-outlet></router-outlet> -->
-      </div>
+      <div *ngIf="selectedTab === 'Teams'"><app-player-details></app-player-details></div>
       <div *ngIf="selectedTab === 'Table'"><app-table></app-table></div>
     </div>
   </div>

@@ -1,6 +1,7 @@
 import { Component , Pipe, PipeTransform} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MonthNamePipe } from '../month-name.pipe';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-live-match-details',
@@ -14,7 +15,9 @@ export class LiveMatchDetailsComponent {
   selectedTab: string = 'Info';
   teamsData: any = [];
   isLoading: boolean = true;
-
+   Scd = this.route.snapshot.paramMap.get('Scd') || '';
+   Ccd = this.route.snapshot.paramMap.get('Ccd') || '';
+   Sdn = this.route.snapshot.paramMap.get('Sdn') || '';
   selectTab(tab: string) {
     this.selectedTab = tab;
   }
@@ -36,8 +39,8 @@ export class LiveMatchDetailsComponent {
       method: 'GET',
       headers: {
         // 'X-RapidAPI-Key': 'a8ec3da861mshb32744df6dd9d15p19d307jsn088147dc42cd',
-        'X-RapidAPI-Key': '03c1be5a3fmsh58575c06ce4fa3ep1c5414jsn815874b68cfa',
-        'X-RapidAPI-Host': 'livescore6.p.rapidapi.com',
+        'X-RapidAPI-Key': environment.XRapidAPIKey,
+        'X-RapidAPI-Host': environment.XRapidAPIHost,
       },
     };
 
@@ -56,11 +59,9 @@ export class LiveMatchDetailsComponent {
   
   navigateToTeams() {
     const matchId = this.itemId;
-    const Scd = this.route.snapshot.paramMap.get('Scd') || '';
-    const Ccd = this.route.snapshot.paramMap.get('Ccd') || '';
-    const Sdn = this.route.snapshot.paramMap.get('Sdn') || '';
+    
 
-    this.router.navigate(['home/details', matchId, Scd, Ccd, Sdn, 'teams']);
+    this.router.navigate(['home/details', matchId, this.Scd, this.Ccd, this.Sdn, 'teams']);
   }
   
   leagueDetails(): void {

@@ -5,6 +5,7 @@
     </div>
   </div>
   <ng-template #content>
+    <div *ngIf="teamsData && teamsData.length > 0 && teamsData[0]?.Stages && teamsData[0].Stages.length > 0; else noMatches">
     <div *ngFor="let stage of teamsData[0]?.Stages; let i = index">
       <table mat-table [dataSource]="stage.Events" class="table">
         <!-- Replace 'bColumn' with the actual property name from your data -->
@@ -47,8 +48,13 @@
         <tr mat-header-row *matHeaderRowDef="['Eid']"></tr>
         <tr mat-row *matRowDef="let row; columns: ['Eid']"></tr>
       </table>
+  
     </div>
+  </div>
+  <ng-template #noMatches>
+    <p class="noMatch">No matches!</p>
   </ng-template>
+</ng-template>
   
 </div>
 <router-outlet></router-outlet>

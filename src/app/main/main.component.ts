@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-main',
@@ -29,13 +30,16 @@ export class MainComponent implements OnInit {
   async fetchApi() {
     const url =
       'https://livescore6.p.rapidapi.com/matches/v2/list-live?Category=cricket&Timezone=-7';
+    // const url =
+    //   'https://livescore6.p.rapidapi.com/matches/v2/list-by-date?Category=cricket&Date=20241207&Timezone=-7';
     // const formattedDate = this.datePipe.transform(this.selectedDate, 'yyyyMMdd');
     
     const options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': '03c1be5a3fmsh58575c06ce4fa3ep1c5414jsn815874b68cfa',
-        'X-RapidAPI-Host': 'livescore6.p.rapidapi.com',
+        // 'X-RapidAPI-Key': '03c1be5a3fmsh58575c06ce4fa3ep1c5414jsn815874b68cfa',
+        'X-RapidAPI-Key': environment.XRapidAPIKey,
+        'X-RapidAPI-Host': environment.XRapidAPIHost,
       },
     };
 
