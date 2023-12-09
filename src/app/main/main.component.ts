@@ -27,6 +27,10 @@ export class MainComponent implements OnInit {
     this.router.navigate(['/home/details', itemId,Scd , Ccd , Sdn]);
   }
 
+  leagueDetails(Ccd:string ,Scd:string): void {
+    this.router.navigate(['/home/league', Ccd , Scd]);
+  }
+
   async fetchApi() {
     const url =
       'https://livescore6.p.rapidapi.com/matches/v2/list-live?Category=cricket&Timezone=-7';

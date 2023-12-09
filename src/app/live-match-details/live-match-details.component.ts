@@ -15,9 +15,10 @@ export class LiveMatchDetailsComponent {
   selectedTab: string = 'Info';
   teamsData: any = [];
   isLoading: boolean = true;
-   Scd = this.route.snapshot.paramMap.get('Scd') || '';
-   Ccd = this.route.snapshot.paramMap.get('Ccd') || '';
-   Sdn = this.route.snapshot.paramMap.get('Sdn') || '';
+  Scd = this.route.snapshot.paramMap.get('Scd') || '';
+  Ccd = this.route.snapshot.paramMap.get('Ccd') || '';
+  Sdn = this.route.snapshot.paramMap.get('Sdn') || '';
+
   selectTab(tab: string) {
     this.selectedTab = tab;
   }
@@ -59,15 +60,12 @@ export class LiveMatchDetailsComponent {
   
   navigateToTeams() {
     const matchId = this.itemId;
-    
-
     this.router.navigate(['home/details', matchId, this.Scd, this.Ccd, this.Sdn, 'teams']);
   }
   
-  leagueDetails(): void {
-    console.log('League Details clicked!');
-    // You can add more logic here if needed
-  }  
+  leagueDetails(Ccd:string ,Scd:string): void {
+    this.router.navigate(['/home/league', Ccd , Scd]);
+  }
 
   getFormattedDate(date: number, start: number, end: number): string {
     const dateString = date.toString();

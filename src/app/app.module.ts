@@ -26,6 +26,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LeagueDetailsComponent } from './league-details/league-details.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ScoreCardComponent,
     TableComponent,
     InfoComponent,
-    MonthNamePipe
+    MonthNamePipe,
+    LeagueDetailsComponent
   ],
   imports: [
     BrowserModule,

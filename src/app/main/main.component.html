@@ -10,7 +10,7 @@
       <table mat-table [dataSource]="stage.Events" class="table">
         <!-- Replace 'bColumn' with the actual property name from your data -->
         <ng-container matColumnDef="Eid">
-          <th mat-header-cell *matHeaderCellDef>
+          <th mat-header-cell *matHeaderCellDef (click)="leagueDetails(stage.Ccd , stage.Scd)">
             {{ stage.Snm }}
             <p class="subHeader">{{stage.Cnm}}</p>
           </th>

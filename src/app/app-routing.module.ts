@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { LiveMatchDetailsComponent } from './live-match-details/live-match-details.component';
 import { MainComponent } from './main/main.component';
 import { PlayerDetailsComponent } from './details-components/player-details/player-details.component';
+import { LeagueDetailsComponent } from './league-details/league-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -14,7 +15,8 @@ const routes: Routes = [
   },
   { path: 'home/details/:id/:Scd/:Ccd/:Sdn', component: LiveMatchDetailsComponent , children:[
     {path: 'teams' , component: PlayerDetailsComponent },
-  ] },
+  ]},
+  { path :'home/league/:Ccd/:Scd' , component:LeagueDetailsComponent }
 ];
 
 @NgModule({

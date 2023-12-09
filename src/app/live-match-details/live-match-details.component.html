@@ -8,7 +8,7 @@
     <ng-template #content>
       <table mat-table [dataSource]="teamsData" class="table">
         <ng-container matColumnDef="bColumn">
-          <th mat-header-cell *matHeaderCellDef (click)="leagueDetails()">
+          <th mat-header-cell *matHeaderCellDef (click)="leagueDetails(teamsData[0]?.Stg?.Ccd , teamsData[0]?.Stg?.Scd)">
             {{ teamsData[0]?.Stg?.Sdn }}
             <p class="subHeader">{{teamsData[0]?.Stg?.Cnm}}</p>
           </th>
