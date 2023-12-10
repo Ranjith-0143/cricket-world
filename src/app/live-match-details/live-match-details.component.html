@@ -8,7 +8,8 @@
     <ng-template #content>
       <table mat-table [dataSource]="teamsData" class="table">
         <ng-container matColumnDef="bColumn">
-          <th mat-header-cell *matHeaderCellDef (click)="leagueDetails(teamsData[0]?.Stg?.Ccd , teamsData[0]?.Stg?.Scd)">
+          <th mat-header-cell *matHeaderCellDef
+            (click)="leagueDetails(teamsData[0]?.Stg?.Ccd , teamsData[0]?.Stg?.Scd)">
             {{ teamsData[0]?.Stg?.Sdn }}
             <p class="subHeader">{{teamsData[0]?.Stg?.Cnm}}</p>
           </th>
@@ -16,7 +17,7 @@
             <div class="matchDetails">
 
               <p class="matchName">
-                {{score.EtTx}} {{score.ErnInf ? '(' + score.ErnInf  + ')' : ''}}
+                {{score.EtTx}} {{score.ErnInf ? '(' + score.ErnInf + ')' : ''}}
               </p>
               <p class="matchName">
                 <span *ngIf="score.Esd">
@@ -29,17 +30,21 @@
                   {{ getFormattedDate(score.Ese, 6, 8) }}
                 </span>
               </p>
-              
-              
+
+
             </div>
             <p class="subText">{{score.EpsL}}</p>
             <div class="team1">
-              <p class="teamName1">{{score.T1[0].Nm}}</p>
-              <p class="team1Score">{{score.Tr1C1 ? score.Tr1C1 : ''}} {{ score.Tr1CW1 ? '/' + score.Tr1CW1 : ''}} {{score.Tr1C2 ? '& ' + score.Tr1C2 : ''}} {{ score.Tr1CW2 ? '/' + score.Tr1CW2 : ''}}</p>
+              <p class="teamName1"> <span *ngIf="score.Ebat === 1" class="icon">🏏</span><span class="icon"
+                  *ngIf="score.Ebat === 2">⚾</span>{{score.T1[0].Nm}}</p>
+              <p class="team1Score">{{score.Tr1C1 ? score.Tr1C1 : ''}} {{ score.Tr1CW1 ? '/' + score.Tr1CW1 : ''}}
+                {{score.Tr1C2 ? '& ' + score.Tr1C2 : ''}} {{ score.Tr1CW2 ? '/' + score.Tr1CW2 : ''}}</p>
             </div>
             <div class="team2">
-              <p class="teamName2">{{score.T2[0].Nm}}</p>
-              <p class="team2Score">{{score.Tr2C1 ? score.Tr2C1 : ''}} {{ score.Tr2CW1 ? '/' + score.Tr2CW1 : ''}} {{score.Tr2C2 ? '& ' + score.Tr2C2 : ''}} {{ score.Tr2CW2 ? '/' + score.Tr2CW2: ''}}</p>
+              <p class="teamName2"><span *ngIf="score.Ebat === 2" class="icon">🏏</span><span class="icon"
+                  *ngIf="score.Ebat === 1">⚾</span>{{score.T2[0].Nm}}</p>
+              <p class="team2Score">{{score.Tr2C1 ? score.Tr2C1 : ''}} {{ score.Tr2CW1 ? '/' + score.Tr2CW1 : ''}}
+                {{score.Tr2C2 ? '& ' + score.Tr2C2 : ''}} {{ score.Tr2CW2 ? '/' + score.Tr2CW2: ''}}</p>
             </div>
             <p class="comment">{{score.ECo}}</p>
           </td>
@@ -57,7 +62,8 @@
       <div (click)="selectTab('Scorecard')" [class.active]="selectedTab === 'Scorecard'">Scoreboard</div>
       <div (click)="selectTab('Summary')" [class.active]="selectedTab === 'Summary'">Summary</div>
       <div (click)="selectTab('Teams')" [class.active]="selectedTab === 'Teams'">Players</div>
-      <div (click)="selectTab('Table')" *ngIf ="teamsData[0]?.EO === 6816359 || teamsData[0]?.EOX === 6816359"  [class.active]="selectedTab === 'Table'">Table</div>
+      <div (click)="selectTab('Table')" *ngIf="teamsData[0]?.EO === 6816359 || teamsData[0]?.EOX === 6816359"
+        [class.active]="selectedTab === 'Table'">Table</div>
     </div>
 
     <div>

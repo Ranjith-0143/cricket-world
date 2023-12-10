@@ -37,9 +37,8 @@ export class InfoComponent {
     try {
       const response = await fetch(url, options);
       const result = await response.json();
-      console.log('match info',result);
+      console.log('match info', result);
       this.matchInfoDatas.push(result);
-      console.log(this.matchInfoDatas[0]?.Refs[0].Nm);
       this.isLoading = false;
     } catch (error) {
       console.log(error);

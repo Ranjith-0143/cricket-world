@@ -1,87 +1,94 @@
 <div fxLayout="column" fxLayoutGap="20px" class="container">
-    <div>
-      <div class="loading-container" *ngIf="isLoading; else content">
-        <div class="spinner-wrapper">
-          <mat-spinner diameter="30"></mat-spinner>
-        </div>
+  <div>
+    <div class="loading-container" *ngIf="isLoading; else content">
+      <div class="spinner-wrapper">
+        <mat-spinner diameter="30"></mat-spinner>
       </div>
-      <ng-template #content>
-        <table mat-table [dataSource]="leagueDatas" class="header">
-            <ng-container matColumnDef="bColumn">
-              <td mat-cell *matCellDef="let leagueName" class="header"> 
-                <div class="series">
-                    <p class="seriesName">{{leagueName.Stages[0].Snm}}</p>
-                    <p class="seriesSubName">{{leagueName.Stages[0].Cnm}}</p>
-                </div>
-              </td>
-            </ng-container>
-            <tr mat-row *matRowDef="let row; columns: ['bColumn']"></tr>
+    </div>
+    <ng-template #content>
+      <table mat-table [dataSource]="leagueDatas" class="header">
+        <ng-container matColumnDef="bColumn">
+          <td mat-cell *matCellDef="let leagueName" class="header">
+            <div class="series">
+              <p class="seriesName">{{leagueName.Stages[0].Snm}}</p>
+              <p class="seriesSubName">{{leagueName.Stages[0].Cnm}}</p>
+            </div>
+          </td>
+        </ng-container>
+        <tr mat-row *matRowDef="let row; columns: ['bColumn']"></tr>
       </table>
 
       <div>
         <div class="tabs-row">
           <div (click)="selectTab('Fixtures')" [class.active]="selectedTab === 'Fixtures'">Fixtures</div>
           <div (click)="selectTab('Results')" [class.active]="selectedTab === 'Results'">Results</div>
-          <div (click)="selectTab('Table')" *ngIf="leagueDatas[0]?.Stages[0]?.LeagueTable" [class.active]="selectedTab === 'Table'">Table</div>
+          <div (click)="selectTab('Table')" *ngIf="leagueDatas[0]?.Stages[0]?.LeagueTable"
+            [class.active]="selectedTab === 'Table'">Table</div>
         </div>
-    
+
         <div>
           <div *ngIf="selectedTab === 'Fixtures'">
 
-          <div *ngFor="let stage of leagueDatas[0]?.Stages; let i = index">
-            <table mat-table [dataSource]="stage.Events" class="table">
-              <ng-container matColumnDef="Eid">
-                <td mat-cell *matCellDef="let event" (click)="showDetails(event.Eid , stage.Scd , stage.Ccd , stage.Scd)">
-                  <ng-container *ngIf="event.EpsL !== 'Finished'">
-                  <div class="matchDetails">
-                    <p class="matchName">
-                      {{event.EtTx}} {{event.ErnInf ? '(' + event.ErnInf  + ')' : ''}}
-                    </p>
-                    <p class="matchName">
-                      <span *ngIf="event.Esd">
-                        {{ getFormattedDate(event.Esd, 4, 6) | monthName }}
-                        {{ getFormattedDate(event.Esd, 6, 8) }}
-                      </span>
-                      <ng-container *ngIf="event.Ese"> - </ng-container>
-                      <span *ngIf="event.Ese">
-                        {{ getFormattedDate(event.Ese, 4, 6) | monthName }}
-                        {{ getFormattedDate(event.Ese, 6, 8) }}
-                      </span>
-                    </p>
-                  </div>
-                  <p class="subText">{{event.EpsL}}</p>
-                  <div class="team1">
-                    <p class="teamName1">{{event.T1[0].Nm}}</p>
-                    <p class="team1Score">{{event.Tr1C1 ? event.Tr1C1 : ''}} {{ event.Tr1CW1 ? '/' + event.Tr1CW1 : ''}} {{event.Tr1C2 ? '& ' + event.Tr1C2 : ''}} {{ event.Tr1CW2 ? '/' + event.Tr1CW2 : ''}}</p>
-                  </div>
-                  <div class="team2">
-                    <p class="teamName2">{{event.T2[0].Nm}}</p>
-                    <p class="team2Score">{{event.Tr2C1 ? event.Tr2C1 : ''}} {{ event.Tr2CW1 ? '/' + event.Tr2CW1 : ''}} {{event.Tr2C2 ? '& ' + event.Tr2C2 : ''}} {{ event.Tr2CW2 ? '/' + event.Tr2CW2: ''}}</p>
-                  </div>
-                  <p class="comment">{{event.ECo}}</p>
-                                  
-              </ng-container>
-                </td>
-              </ng-container>
-              <!-- <tr mat-row *matRowDef="let row; columns: ['Eid']"></tr> -->
-              <tr mat-row *matRowDef="let row; columns: ['Eid']; let i = index" [ngClass]="{ 'hide-row': stage.Events[i]?.EpsL === 'Finished' }"></tr>
-            </table>
+            <div *ngFor="let stage of leagueDatas[0]?.Stages; let i = index">
+              <table mat-table [dataSource]="stage.Events" class="table">
+                <ng-container matColumnDef="Eid">
+                  <td mat-cell *matCellDef="let event"
+                    (click)="showDetails(event.Eid , stage.Scd , stage.Ccd , stage.Scd)">
+                    <ng-container *ngIf="event.EpsL !== 'Finished'">
+                      <div class="matchDetails">
+                        <p class="matchName">
+                          {{event.EtTx}} {{event.ErnInf ? '(' + event.ErnInf + ')' : ''}}
+                        </p>
+                        <p class="matchName">
+                          <span *ngIf="event.Esd">
+                            {{ getFormattedDate(event.Esd, 4, 6) | monthName }}
+                            {{ getFormattedDate(event.Esd, 6, 8) }}
+                          </span>
+                          <ng-container *ngIf="event.Ese"> - </ng-container>
+                          <span *ngIf="event.Ese">
+                            {{ getFormattedDate(event.Ese, 4, 6) | monthName }}
+                            {{ getFormattedDate(event.Ese, 6, 8) }}
+                          </span>
+                        </p>
+                      </div>
+                      <p class="subText">{{event.EpsL}}</p>
+                      <div class="team1">
+                        <p class="teamName1"><span *ngIf="event.Ebat === 1" class="icon">🏏</span><span class="icon"
+                            *ngIf=" event.Ebat === 2">⚾</span>{{event.T1[0].Nm}}</p>
+                        <p class="team1Score">{{event.Tr1C1 ? event.Tr1C1 : ''}} {{ event.Tr1CW1 ? '/' + event.Tr1CW1 :
+                          ''}} {{event.Tr1C2 ? '& ' + event.Tr1C2 : ''}} {{ event.Tr1CW2 ? '/' + event.Tr1CW2 : ''}}</p>
+                      </div>
+                      <div class="team2">
+                        <p class="teamName2"><span *ngIf="event.Ebat === 2" class="icon">🏏</span><span class="icon"
+                            *ngIf=" event.Ebat === 1">⚾</span>{{event.T2[0].Nm}}</p>
+                        <p class="team2Score">{{event.Tr2C1 ? event.Tr2C1 : ''}} {{ event.Tr2CW1 ? '/' + event.Tr2CW1 :
+                          ''}} {{event.Tr2C2 ? '& ' + event.Tr2C2 : ''}} {{ event.Tr2CW2 ? '/' + event.Tr2CW2: ''}}</p>
+                      </div>
+                      <p class="comment">{{event.ECo}}</p>
+
+                    </ng-container>
+                  </td>
+                </ng-container>
+                <!-- <tr mat-row *matRowDef="let row; columns: ['Eid']"></tr> -->
+                <tr mat-row *matRowDef="let row; columns: ['Eid']; let i = index"
+                  [ngClass]="{ 'hide-row': stage.Events[i]?.EpsL === 'Finished' }"></tr>
+              </table>
+            </div>
           </div>
-        </div>
 
 
 
 
           <div *ngIf="selectedTab === 'Results'">
             <div *ngFor="let stage of leagueDatas[0]?.Stages; let i = index">
-                <table mat-table [dataSource]="stage.Events" class="table">
-                  <!-- Replace 'bColumn' with the actual property name from your data -->
-                  <ng-container matColumnDef="Eid">
-                    <td mat-cell *matCellDef="let event">
-                      <ng-container *ngIf="event.EpsL === 'Finished'">
+              <table mat-table [dataSource]="stage.Events" class="table">
+                <!-- Replace 'bColumn' with the actual property name from your data -->
+                <ng-container matColumnDef="Eid">
+                  <td mat-cell *matCellDef="let event">
+                    <ng-container *ngIf="event.EpsL === 'Finished'">
                       <div class="matchDetails">
                         <p class="matchName">
-                          {{event.EtTx}} {{event.ErnInf ? '(' + event.ErnInf  + ')' : ''}}
+                          {{event.EtTx}} {{event.ErnInf ? '(' + event.ErnInf + ')' : ''}}
                         </p>
                         <p class="matchName">
                           <span *ngIf="event.Esd">
@@ -98,90 +105,93 @@
                       <p class="subText">{{event.EpsL}}</p>
                       <div class="team1">
                         <p class="teamName1">{{event.T1[0].Nm}}</p>
-                        <p class="team1Score">{{event.Tr1C1 ? event.Tr1C1 : ''}} {{ event.Tr1CW1 ? '/' + event.Tr1CW1 : ''}} {{event.Tr1C2 ? '& ' + event.Tr1C2 : ''}} {{ event.Tr1CW2 ? '/' + event.Tr1CW2 : ''}}</p>
+                        <p class="team1Score">{{event.Tr1C1 ? event.Tr1C1 : ''}} {{ event.Tr1CW1 ? '/' + event.Tr1CW1 :
+                          ''}} {{event.Tr1C2 ? '& ' + event.Tr1C2 : ''}} {{ event.Tr1CW2 ? '/' + event.Tr1CW2 : ''}}</p>
                       </div>
                       <div class="team2">
                         <p class="teamName2">{{event.T2[0].Nm}}</p>
-                        <p class="team2Score">{{event.Tr2C1 ? event.Tr2C1 : ''}} {{ event.Tr2CW1 ? '/' + event.Tr2CW1 : ''}} {{event.Tr2C2 ? '& ' + event.Tr2C2 : ''}} {{ event.Tr2CW2 ? '/' + event.Tr2CW2: ''}}</p>
+                        <p class="team2Score">{{event.Tr2C1 ? event.Tr2C1 : ''}} {{ event.Tr2CW1 ? '/' + event.Tr2CW1 :
+                          ''}} {{event.Tr2C2 ? '& ' + event.Tr2C2 : ''}} {{ event.Tr2CW2 ? '/' + event.Tr2CW2: ''}}</p>
                       </div>
                       <p class="comment">{{event.ECo}}</p>
-                                      
-                  </ng-container>
-                    </td>
-                  </ng-container>
-                  <!-- <tr mat-row *matRowDef="let row; columns: ['Eid']"></tr> -->
-                  <tr mat-row *matRowDef="let row; columns: ['Eid']; let i = index" [ngClass]="{ 'hide-row': stage.Events[i]?.EpsL !== 'Finished' }"></tr>
-                </table>
-              </div>
+
+                    </ng-container>
+                  </td>
+                </ng-container>
+                <!-- <tr mat-row *matRowDef="let row; columns: ['Eid']"></tr> -->
+                <tr mat-row *matRowDef="let row; columns: ['Eid']; let i = index"
+                  [ngClass]="{ 'hide-row': stage.Events[i]?.EpsL !== 'Finished' }"></tr>
+              </table>
+            </div>
           </div>
 
           <!-- TABLE CONTENTS -->
           <div *ngIf="selectedTab === 'Table'">
             <table mat-table [dataSource]="leagueDatas[0].Stages[0].LeagueTable.L[0].Tables[0].team" class="table">
 
-                <ng-container matColumnDef="rnk">
-                    <th mat-header-cell *matHeaderCellDef>#</th>
-                    <td mat-cell *matCellDef="let score" class="run">
-                        {{ score?.rnk }}
-                    </td>
-                </ng-container>
-                <ng-container matColumnDef="Team">
-                    <th mat-header-cell *matHeaderCellDef>Team</th>
-                    <td mat-cell *matCellDef="let score" class="run">
-                        {{ score?.Tnm }}
-                    </td>
-                </ng-container>
-                <ng-container matColumnDef="M">
-                    <th mat-header-cell *matHeaderCellDef>M</th>
-                    <td mat-cell *matCellDef="let score" class="run">
-                        {{ score?.pld }}
-                    </td>
-                </ng-container>
-                <ng-container matColumnDef="W">
-                    <th mat-header-cell *matHeaderCellDef>W</th>
-                    <td mat-cell *matCellDef="let score" class="run">
-                        {{ score?.win }}
-                    </td>
-                </ng-container>
-                <ng-container matColumnDef="L">
-                    <th mat-header-cell *matHeaderCellDef>L</th>
-                    <td mat-cell *matCellDef="let score" class="run">
-                        {{ score?.lst }}
-                    </td>
-                </ng-container>
-                <ng-container matColumnDef="T">
-                    <th mat-header-cell *matHeaderCellDef>T</th>
-                    <td mat-cell *matCellDef="let score" class="run">
-                        {{ score?.drw }}
-                    </td>
-                </ng-container>
-                <ng-container matColumnDef="N/R">
-                    <th mat-header-cell *matHeaderCellDef>N/R</th>
-                    <td mat-cell *matCellDef="let score" class="run">
-                        {{ score?.nr }}
-                    </td>
-                </ng-container>
-                <ng-container matColumnDef="Pts">
-                    <th mat-header-cell *matHeaderCellDef>PTS</th>
-                    <td mat-cell *matCellDef="let score" class="run">
-                        {{ score?.pts }}
-                    </td>
-                </ng-container>
-                <ng-container matColumnDef="NRR">
-                    <th mat-header-cell *matHeaderCellDef>NRR</th>
-                    <td mat-cell *matCellDef="let score" class="run">
-                        {{ score?.nrr }}
-                    </td>
-                </ng-container>
-                <!-- Columns displayed in the table -->
-                <tr mat-header-row *matHeaderRowDef="['rnk', 'Team', 'M','W','L','T','N/R','Pts','NRR']"></tr>
-                <tr mat-row *matRowDef="let row; columns: ['rnk', 'Team', 'M','W','L','T','N/R','Pts','NRR']"></tr>
+              <ng-container matColumnDef="rnk">
+                <th mat-header-cell *matHeaderCellDef>#</th>
+                <td mat-cell *matCellDef="let score" class="run">
+                  {{ score?.rnk }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="Team">
+                <th mat-header-cell *matHeaderCellDef>Team</th>
+                <td mat-cell *matCellDef="let score" class="run">
+                  {{ score?.Tnm }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="M">
+                <th mat-header-cell *matHeaderCellDef>M</th>
+                <td mat-cell *matCellDef="let score" class="run">
+                  {{ score?.pld }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="W">
+                <th mat-header-cell *matHeaderCellDef>W</th>
+                <td mat-cell *matCellDef="let score" class="run">
+                  {{ score?.win }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="L">
+                <th mat-header-cell *matHeaderCellDef>L</th>
+                <td mat-cell *matCellDef="let score" class="run">
+                  {{ score?.lst }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="T">
+                <th mat-header-cell *matHeaderCellDef>T</th>
+                <td mat-cell *matCellDef="let score" class="run">
+                  {{ score?.drw }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="N/R">
+                <th mat-header-cell *matHeaderCellDef>N/R</th>
+                <td mat-cell *matCellDef="let score" class="run">
+                  {{ score?.nr }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="Pts">
+                <th mat-header-cell *matHeaderCellDef>PTS</th>
+                <td mat-cell *matCellDef="let score" class="run">
+                  {{ score?.pts }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="NRR">
+                <th mat-header-cell *matHeaderCellDef>NRR</th>
+                <td mat-cell *matCellDef="let score" class="run">
+                  {{ score?.nrr }}
+                </td>
+              </ng-container>
+              <!-- Columns displayed in the table -->
+              <tr mat-header-row *matHeaderRowDef="['rnk', 'Team', 'M','W','L','T','N/R','Pts','NRR']"></tr>
+              <tr mat-row *matRowDef="let row; columns: ['rnk', 'Team', 'M','W','L','T','N/R','Pts','NRR']"></tr>
             </table>
           </div>
         </div>
       </div>
 
-      
-      </ng-template>
-    </div>
+
+    </ng-template>
+  </div>
 </div>

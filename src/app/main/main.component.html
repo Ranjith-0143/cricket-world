@@ -5,56 +5,61 @@
     </div>
   </div>
   <ng-template #content>
-    <div *ngIf="teamsData && teamsData.length > 0 && teamsData[0]?.Stages && teamsData[0].Stages.length > 0; else noMatches">
-    <div *ngFor="let stage of teamsData[0]?.Stages; let i = index">
-      <table mat-table [dataSource]="stage.Events" class="table">
-        <!-- Replace 'bColumn' with the actual property name from your data -->
-        <ng-container matColumnDef="Eid">
-          <th mat-header-cell *matHeaderCellDef (click)="leagueDetails(stage.Ccd , stage.Scd)">
-            {{ stage.Snm }}
-            <p class="subHeader">{{stage.Cnm}}</p>
-          </th>
-          <td mat-cell *matCellDef="let event" (click)="showDetails(event.Eid , stage.Scd , stage.Ccd , stage.Scd)">
-            <div class="matchDetails">
+    <div
+      *ngIf="teamsData && teamsData.length > 0 && teamsData[0]?.Stages && teamsData[0].Stages.length > 0; else noMatches">
+      <div *ngFor="let stage of teamsData[0]?.Stages; let i = index">
+        <table mat-table [dataSource]="stage.Events" class="table">
+          <!-- Replace 'bColumn' with the actual property name from your data -->
+          <ng-container matColumnDef="Eid">
+            <th mat-header-cell *matHeaderCellDef (click)="leagueDetails(stage.Ccd , stage.Scd)">
+              {{ stage.Snm }}
+              <p class="subHeader">{{stage.Cnm}}</p>
+            </th>
+            <td mat-cell *matCellDef="let event" (click)="showDetails(event.Eid , stage.Scd , stage.Ccd , stage.Scd)">
+              <div class="matchDetails">
 
-              <p class="matchName">
-                {{event.EtTx}} {{event.ErnInf ? '(' + event.ErnInf  + ')' : ''}}
-              </p>
-              <p class="matchName">
-                <span *ngIf="event.Esd">
-                  {{ getFormattedDate(event.Esd, 4, 6) | monthName }}
-                  {{ getFormattedDate(event.Esd, 6, 8) }}
-                </span>
-                <ng-container *ngIf="event.Ese"> - </ng-container>
-                <span *ngIf="event.Ese">
-                  {{ getFormattedDate(event.Ese, 4, 6) | monthName }}
-                  {{ getFormattedDate(event.Ese, 6, 8) }}
-                </span>
-              </p>
-            </div>
-            <p class="subText">{{event.EpsL}}</p>
-            <div class="team1">
-              <p class="teamName1">{{event.T1[0].Nm}}</p>
-              <p class="team1Score">{{event.Tr1C1 ? event.Tr1C1 : ''}} {{ event.Tr1CW1 ? '/' + event.Tr1CW1 : ''}} {{event.Tr1C2 ? '& ' + event.Tr1C2 : ''}} {{ event.Tr1CW2 ? '/' + event.Tr1CW2 : ''}}</p>
-            </div>
-            <div class="team2">
-              <p class="teamName2">{{event.T2[0].Nm}}</p>
-              <p class="team2Score">{{event.Tr2C1 ? event.Tr2C1 : ''}} {{ event.Tr2CW1 ? '/' + event.Tr2CW1 : ''}} {{event.Tr2C2 ? '& ' + event.Tr2C2 : ''}} {{ event.Tr2CW2 ? '/' + event.Tr2CW2: ''}}</p>
-            </div>
-            <p class="comment">{{event.ECo}}</p>
-          </td>
-        </ng-container>
+                <p class="matchName">
+                  {{event.EtTx}} {{event.ErnInf ? '(' + event.ErnInf + ')' : ''}}
+                </p>
+                <p class="matchName">
+                  <span *ngIf="event.Esd">
+                    {{ getFormattedDate(event.Esd, 4, 6) | monthName }}
+                    {{ getFormattedDate(event.Esd, 6, 8) }}
+                  </span>
+                  <ng-container *ngIf="event.Ese"> - </ng-container>
+                  <span *ngIf="event.Ese">
+                    {{ getFormattedDate(event.Ese, 4, 6) | monthName }}
+                    {{ getFormattedDate(event.Ese, 6, 8) }}
+                  </span>
+                </p>
+              </div>
+              <p class="subText">{{event.EpsL}}</p>
+              <div class="team1">
+                <p class="teamName1"> <span *ngIf="event.Ebat === 1" class="icon">🏏</span><span class="icon"
+                    *ngIf="event.Ebat === 2">⚾</span>{{event.T1[0].Nm}}</p>
+                <p class="team1Score">{{event.Tr1C1 ? event.Tr1C1 : ''}} {{ event.Tr1CW1 ? '/' + event.Tr1CW1 : ''}}
+                  {{event.Tr1C2 ? '& ' + event.Tr1C2 : ''}} {{ event.Tr1CW2 ? '/' + event.Tr1CW2 : ''}}</p>
+              </div>
+              <div class="team2">
+                <p class="teamName2"><span *ngIf="event.Ebat === 2" class="icon">🏏</span><span class="icon"
+                    *ngIf="event.Ebat === 1">⚾</span>{{event.T2[0].Nm}}</p>
+                <p class="team2Score">{{event.Tr2C1 ? event.Tr2C1 : ''}} {{ event.Tr2CW1 ? '/' + event.Tr2CW1 : ''}}
+                  {{event.Tr2C2 ? '& ' + event.Tr2C2 : ''}} {{ event.Tr2CW2 ? '/' + event.Tr2CW2: ''}}</p>
+              </div>
+              <p class="comment">{{event.ECo}}</p>
+            </td>
+          </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="['Eid']"></tr>
-        <tr mat-row *matRowDef="let row; columns: ['Eid']"></tr>
-      </table>
-  
+          <tr mat-header-row *matHeaderRowDef="['Eid']"></tr>
+          <tr mat-row *matRowDef="let row; columns: ['Eid']"></tr>
+        </table>
+
+      </div>
     </div>
-  </div>
-  <ng-template #noMatches>
-    <p class="noMatch">No matches!</p>
+    <ng-template #noMatches>
+      <p class="noMatch">No matches!</p>
+    </ng-template>
   </ng-template>
-</ng-template>
-  
+
 </div>
 <router-outlet></router-outlet>

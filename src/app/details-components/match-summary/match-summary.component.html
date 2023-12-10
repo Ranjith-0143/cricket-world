@@ -22,23 +22,28 @@
                         <table mat-table [dataSource]="summary.Com" class="table">
                             <!-- B Column -->
                             <ng-container matColumnDef="bColumn">
-                                <td mat-cell *matCellDef="let wicket" ><p *ngIf="wicket.Aid !== 0 && wicket.Oid !== 0">{{ wicket.Ov }}</p></td>
+                                <td mat-cell *matCellDef="let wicket">
+                                    <p *ngIf="wicket.Aid !== 0 && wicket.Oid !== 0">{{ wicket.Ov }}</p>
+                                </td>
                             </ng-container>
                             <!-- W Column -->
-                            <ng-container matColumnDef="wColumn" >
-                                <td mat-cell *matCellDef="let wicket" >
+                            <ng-container matColumnDef="wColumn">
+                                <td mat-cell *matCellDef="let wicket">
                                     <div class="circle" *ngIf="wicket.Aid !== 0 && wicket.Oid !== 0">
-                                    <p class="w-icon">{{ wicket.Sv }}</p>
-                                  </div></td>
+                                        <p class="w-icon">{{ wicket.Sv }}</p>
+                                    </div>
+                                </td>
                             </ng-container>
                             <!-- Wicket Comment Column -->
                             <ng-container matColumnDef="coColumn">
-                                <td mat-cell *matCellDef="let wicket" colspan="2" >
+                                <td mat-cell *matCellDef="let wicket" colspan="2">
                                     <p class="playerNameContainer" *ngIf="wicket.Aid !== 0 && wicket.Oid !== 0">
-                                        <span class="playersName">{{getBowlerByPid(wicket.Oid)}} to {{ getBatterByPid(wicket.Aid)}}</span>
+                                        <span class="playersName">{{getBowlerByPid(wicket.Oid)}} to {{
+                                            getBatterByPid(wicket.Aid)}}</span>
                                         <!-- <span class="playersName">{{wicket.R}}/{{wicket.WkN}}</span> -->
                                     </p>
-                                    {{ wicket.Aid === 0 && wicket.Oid === 0 ? (wicket.S ? wicket.S + '. ' : '')+ wicket.T : wicket.T }}
+                                    {{ wicket.Aid === 0 && wicket.Oid === 0 ? (wicket.S ? wicket.S + '. ' : '')+
+                                    wicket.T : wicket.T }}
                                 </td>
                             </ng-container>
 
@@ -68,20 +73,23 @@
                             <!-- W Column -->
                             <ng-container matColumnDef="wColumn">
                                 <td mat-cell *matCellDef="let wicket">
-                                    
+
                                     <div class="circle">
-                                    <p class="w-icon">W</p>
-                                  </div></td>
+                                        <p class="w-icon">W</p>
+                                    </div>
+                                </td>
                             </ng-container>
 
                             <!-- Wicket Comment Column -->
                             <ng-container matColumnDef="coColumn">
                                 <td mat-cell *matCellDef="let wicket" colspan="2">
                                     <p class="playerNameContainer">
-                                        <span class="playersName">{{getBowlerByPid(wicket.Bid)}} to {{ getBatterByPid(wicket.Pid)}}</span>
+                                        <span class="playersName">{{getBowlerByPid(wicket.Bid)}} to {{
+                                            getBatterByPid(wicket.Pid)}}</span>
                                         <span class="playersName">{{wicket.R}}/{{wicket.WkN}}</span>
                                     </p>
-                                    {{ wicket.Co }}</td>
+                                    {{ wicket.Co }}
+                                </td>
                             </ng-container>
 
                             <!-- Columns displayed in the table -->

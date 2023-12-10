@@ -4,7 +4,10 @@
   margin:0px ;
   display: flex;
   justify-content: space-between;
-
+}
+.icon{
+  margin: 0px;
+  margin-right: 4px;
 }
 .noMatch{
   text-align: center;
@@ -80,11 +83,13 @@ td {
   }
   .team1 {
     margin: 0px;
+    margin-top: 3px;
     display: flex;
     justify-content: space-between;
   }
   .team2 {
     margin: 0px;
+    margin-top: 3px;
     display: flex;
     justify-content: space-between;
   }

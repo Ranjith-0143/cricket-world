@@ -7,6 +7,11 @@
     padding: 10px;
   }
   
+  .icon{
+    margin: 0px;
+    margin-right: 4px;
+  }
+
   .tabs-row div {
     cursor: pointer;
   }
@@ -68,11 +73,13 @@
   }
   .team1 {
     margin: 0px;
+    margin-top: 3px;
     display: flex;
     justify-content: space-between;
   }
   .team2 {
     margin: 0px;
+    margin-top: 3px;
     display: flex;
     justify-content: space-between;
   }
