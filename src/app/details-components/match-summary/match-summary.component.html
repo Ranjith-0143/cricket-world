@@ -29,7 +29,8 @@
                             <!-- W Column -->
                             <ng-container matColumnDef="wColumn">
                                 <td mat-cell *matCellDef="let wicket">
-                                    <div class="circle" *ngIf="wicket.Aid !== 0 && wicket.Oid !== 0">
+                                    <div class="circle" [style.background-color]="getCircleColor(wicket)"
+                                        *ngIf="wicket.Aid !== 0 && wicket.Oid !== 0">
                                         <p class="w-icon">{{ wicket.Sv }}</p>
                                     </div>
                                 </td>

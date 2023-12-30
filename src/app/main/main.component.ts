@@ -13,8 +13,7 @@ export class MainComponent implements OnInit {
   teamsData: any = [];
   isLoading: boolean = true;
 
-  constructor(private router: Router , private datePipe: DatePipe) {
-  }
+  constructor(private router: Router, private datePipe: DatePipe) {}
 
   async ngOnInit(): Promise<void> {
     if (this.teamsData.length === 0) {
@@ -22,22 +21,23 @@ export class MainComponent implements OnInit {
     }
   }
 
-
-  showDetails(itemId: number , Scd:string , Ccd :string, Sdn:string): void {
-    this.router.navigate(['/home/details', itemId,Scd , Ccd , Sdn]);
+  showDetails(itemId: number, Scd: string, Ccd: string, Sdn: string): void {
+    this.router.navigate(['/home/details', itemId, Scd, Ccd, Sdn]);
   }
 
-  leagueDetails(Ccd:string ,Scd:string): void {
-    this.router.navigate(['/home/league', Ccd , Scd]);
+  leagueDetails(Ccd: string, Scd: string): void {
+    this.router.navigate(['/home/league', Ccd, Scd]);
   }
 
   async fetchApi() {
-    const url =
-      'https://livescore6.p.rapidapi.com/matches/v2/list-live?Category=cricket&Timezone=-7';
     // const url =
-    //   'https://livescore6.p.rapidapi.com/matches/v2/list-by-date?Category=cricket&Date=20241207&Timezone=-7';
+    //   'https://livescore6.p.rapidapi.com/matches/v2/list-live?Category=cricket';
+    // const url =
+    //   'https://livescore6.p.rapidapi.com/matches/v2/list-by-date?Category=cricket&Date=20231230&Timezone=0';
     // const formattedDate = this.datePipe.transform(this.selectedDate, 'yyyyMMdd');
-    
+    const url =
+      'https://livescore6.p.rapidapi.com/matches/v2/list-by-date?Category=cricket&Date=20231230';
+
     const options = {
       method: 'GET',
       headers: {

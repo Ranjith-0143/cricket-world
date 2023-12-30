@@ -56,14 +56,14 @@ export class MatchSummaryComponent {
       // console.log('prns', currentPid);
       if (Number(currentPid) === pid) {
         // console.log('find', prnsArray[i]);
-        // return prnsArray[i].Ln; 
+        // return prnsArray[i].Ln;
         const firstName = prnsArray[i].Fn;
-            // Extract the first letter of the first name
-            const firstLetter = firstName ? firstName.charAt(0) + ' ' : '';
-            return firstLetter + prnsArray[i].Ln;
+        // Extract the first letter of the first name
+        const firstLetter = firstName ? firstName.charAt(0) + ' ' : '';
+        return firstLetter + prnsArray[i].Ln;
       }
     }
-    return null; 
+    return null;
   }
 
   getBowlerByPid(bid: any): any {
@@ -74,17 +74,15 @@ export class MatchSummaryComponent {
       // console.log('prns', currentPid);
       if (Number(currentPid) === bid) {
         // console.log('find', prnsArray[i]);
-        // return prnsArray[i].Ln; 
+        // return prnsArray[i].Ln;
         const firstName = prnsArray[i].Fn;
-            // Extract the first letter of the first name
-            const firstLetter = firstName ? firstName.charAt(0) + ' ' : '';
-            return firstLetter + prnsArray[i].Ln;
+        // Extract the first letter of the first name
+        const firstLetter = firstName ? firstName.charAt(0) + ' ' : '';
+        return firstLetter + prnsArray[i].Ln;
       }
     }
-    return null; 
+    return null;
   }
-
-
 
   selectTab(tab: string) {
     this.selectedTab = tab;
@@ -93,4 +91,18 @@ export class MatchSummaryComponent {
     this.selectedWicketsTab = tab;
   }
 
+  getCircleColor(wicket: any): string {
+    if (wicket.Aid !== 0 && wicket.Oid !== 0) {
+      // Check the value of wicket.Sv and return the appropriate color
+      if (wicket.Sv === '4') {
+        return '#3f51b5';
+      } else if (wicket.Sv === '6') {
+        return 'green';
+      } else {
+        return 'red'; // Default color
+      }
+    } else {
+      return 'transparent'; // Or any other default color for non-valid cases
+    }
+  }
 }

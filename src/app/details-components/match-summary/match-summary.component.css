@@ -48,9 +48,9 @@
     width: 24px;
     height: 24px;
     border-radius: 50%;
-    background-color:red; /* You can change the background color */
+    /* background-color:red;  */
     display: flex;
-    align-items: center;
+    align-items: center; 
     justify-content: center;
     text-align: center;
   }

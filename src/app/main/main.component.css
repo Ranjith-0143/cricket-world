@@ -54,7 +54,7 @@ th {
   cursor: pointer;
 }
 .table th {
-  background-color: #f2f2f2; /* Set a background color for header cells if desired */
+  background-color: #f2f2f2;
 }
 td {
   cursor: pointer;
